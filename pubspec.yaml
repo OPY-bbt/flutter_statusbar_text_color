@@ -1,8 +1,8 @@
 name: flutter_statusbar_text_color
 description: set status bar text color
 version: 0.0.1
-author:
-homepage:
+author: zhangyan <zhyabs@gmail.com>
+homepage: https://github.com/OPY-bbt/flutter_statusbar_text_color
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
