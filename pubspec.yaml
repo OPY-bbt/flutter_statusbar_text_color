@@ -1,6 +1,6 @@
 name: flutter_statusbar_text_color
 description: A flutter plugin to set status bar text color to avoid the text in status bar hidden in dark mode
-version: 0.1.0
+version: 0.1.1
 author: zhangyan <zhyabs@gmail.com>
 homepage: https://github.com/OPY-bbt/flutter_statusbar_text_color
 
