@@ -22,29 +22,48 @@ This plugin will help you to change status bar text color.
 
 ## Tips
 
-If you want set text color globally, you can call setTextColor every build in App class, like this:
+If you want set text color globally, you can call setTextColor when route changes, like this:
 ```dart
 void main() {
     runApp(App());
 }
 
-class App extends StatelessWidget {
+class StatusBarTextRouteObserver extends NavigatorObserver {
+    Timer _timer;
 
-    _setStatusBarTextColor() async {
+    _setStatusBarTextColor() {
+        _timer?.cancel();
+
+        _timer = Timer(Duration(milliseconds: 200), () async {
         try {
-            await FlutterStatusbarTextColor.setTextColor(FlutterStatusbarTextColor.dark);
-        } catch (e) {
+            await FlutterStatusbarTextColor.setTextColor(
+                FlutterStatusbarTextColor.dark);
+        } catch (_) {
             print('set status bar text color failed');
         }
+        });
     }
 
     @override
-    Widget build(BuildContext context) {
+    void didPush(Route route, Route previousRoute) {
+        super.didPush(route, previousRoute);
         _setStatusBarTextColor();
+    }
 
+    @override
+    void didPop(Route route, Route previousRoute) {
+        super.didPop(route, previousRoute);
+        _setStatusBarTextColor();
+    }
+}
+
+class App extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
         return MaterialApp(
             title: 'demo',
             home: widget.isSplash ? SplashPage() : AppPage(0),
+            navigatorObservers: [StatusBarTextRouteObserver()],
             ...
         );
     }
