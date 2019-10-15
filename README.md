@@ -35,12 +35,12 @@ class StatusBarTextRouteObserver extends NavigatorObserver {
         _timer?.cancel();
 
         _timer = Timer(Duration(milliseconds: 200), () async {
-        try {
-            await FlutterStatusbarTextColor.setTextColor(
-                FlutterStatusbarTextColor.dark);
-        } catch (_) {
-            print('set status bar text color failed');
-        }
+            try {
+                await FlutterStatusbarTextColor.setTextColor(
+                    FlutterStatusbarTextColor.dark);
+            } catch (_) {
+                print('set status bar text color failed');
+            }
         });
     }
 
